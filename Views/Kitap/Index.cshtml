@@ -1,0 +1,60 @@
+﻿@model List<Kitap>
+
+
+@if (TempData["basarili"] != null)
+{
+    <h2 style="color:darkorange">@TempData["basarili"]</h2>
+}
+
+<div class="container">
+
+    <div class="row pt-3 pb-4">
+        <div>
+            <h1>Kitaplar</h1>
+        </div>
+    </div>
+
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Kitap Adı</th>
+                <th>Tanım</th>
+                <th>Yazar</th>
+                <th>Fiyat</th>
+                <th>KitapTuru</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var kitap in Model)
+            {
+                <tr>
+                    <td>@kitap.Id</td>
+                    <td>@kitap.KitapAdi</td>
+                    <td>@kitap.Tanim</td>
+                    <td>@kitap.Yazar</td>
+                    <td>@kitap.Fiyat</td>
+                    <td>@kitap.KitapTuru.Ad</td>
+                    <td>
+                        <a asp-controller="Kitap" asp-action="EkleGuncelle" asp-route-id="@kitap.Id" type="button" class="btn btn-success" style="width:150px">Güncelle</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Kitap" asp-action="Sil" asp-route-id="@kitap.Id" type="button" class="btn btn-danger" style="width:150px">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    <div class="row pt-3 pb-3">
+        <div>
+            <a asp-controller="Kitap" asp-action="EkleGuncelle" class="btn btn-lg btn-primary" type="button">
+                Yeni Kitap Oluştur
+            </a>
+        </div>
+    </div>
+
+</div>
